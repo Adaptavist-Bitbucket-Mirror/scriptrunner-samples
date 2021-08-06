@@ -1,3 +1,41 @@
+import java.time.OffsetDateTime
+import java.time.format.DateTimeFormatter
+import aQute.bnd.gradle.Bundle
+
+import static java.time.ZoneOffset.UTC
+
 plugins {
     id 'groovy'
+    id 'biz.aQute.bnd.builder'
+}
+
+subprojects { subproject ->
+    repositories {
+        mavenLocal()
+        mavenCentral()
+        maven { url 'https://packages.atlassian.com/mvn/maven-public-legacy/' }
+        maven { url 'https://packages.atlassian.com/mvn/maven-public/' }
+        maven { url "https://plugins.gradle.org/m2/" }
+        maven {
+            url 'https://nexus.adaptavist.com/content/repositories/external'
+        }
+    }
+
+    group = 'com.adaptavist.scriptrunner.assets.samples'
+    version = '1.0.0'
+
+    tasks.register('bundle',  Bundle) {
+        from sourceSets.main.output
+        bnd(
+                'Require-Bundle': "com.onresolve.${subproject.name}.groovy.groovyrunner",
+                'Bundle-Description': subproject.description,
+                'Bundle-SymbolicName': "${subproject.group}.${subproject.name}",
+                'Bundle-DocURL': 'http://www.example.com/',
+                'Bundle-Vendor': 'Example Company',
+                'Spring-Context': '*',
+                'Bundle-Name': subproject.name,
+                'Bundle-Version': subproject.version,
+                'Atlassian-Build-Date': OffsetDateTime.now(UTC).toLocalDate().format(DateTimeFormatter.ofPattern("yyyy-MM-dd")) + "T00:00:00+0000",
+        )
+    }
 }

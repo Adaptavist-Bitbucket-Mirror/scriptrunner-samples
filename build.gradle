@@ -23,6 +23,7 @@ subprojects { subproject ->
 
     group = 'com.adaptavist.scriptrunner.assets.samples'
     version = '1.0.0'
+    description = "ScriptRunner Sample Plugin for ${subproject.name.capitalize()}"
 
     tasks.register('bundle',  Bundle) {
         from sourceSets.main.output

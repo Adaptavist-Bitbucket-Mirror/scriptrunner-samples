@@ -25,10 +25,11 @@ subprojects { subproject ->
     version = '1.0.0'
     description = "ScriptRunner Sample Plugin for ${subproject.name.capitalize()}"
 
+    def bundleKeyId = subproject.name == 'bitbucket' ? 'stash' : subproject.name
     tasks.register('bundle',  Bundle) {
         from sourceSets.main.output
         bnd(
-                'Require-Bundle': "com.onresolve.${subproject.name}.groovy.groovyrunner",
+                'Require-Bundle': "com.onresolve.${bundleKeyId}.groovy.groovyrunner",
                 'Bundle-Description': subproject.description,
                 'Bundle-SymbolicName': "${subproject.group}.${subproject.name}",
                 'Bundle-DocURL': 'http://www.example.com/',

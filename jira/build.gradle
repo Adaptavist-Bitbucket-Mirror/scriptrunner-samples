@@ -4,6 +4,6 @@ plugins {
 }
 
 dependencies {
-    compileOnly 'com.adaptavist.scriptrunner.jira.spi:scriptrunner-jira-spi:6.31.0-SNAPSHOT'
+    compileOnly 'com.adaptavist.scriptrunner.jira.base:scriptrunner-jira-base:6.31.0-SNAPSHOT'
     implementation 'org.codehaus.groovy:groovy-all:2.5.14'
 }

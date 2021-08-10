@@ -4,6 +4,6 @@ plugins {
 }
 
 dependencies {
-    compileOnly 'com.adaptavist.scriptrunner.bitbucket.spi:scriptrunner-bitbucket-spi:6.31.0-SNAPSHOT'
+    compileOnly 'com.adaptavist.scriptrunner.bitbucket.base:scriptrunner-bitbucket-base:6.31.0-SNAPSHOT'
     implementation 'org.codehaus.groovy:groovy-all:2.5.14'
 }

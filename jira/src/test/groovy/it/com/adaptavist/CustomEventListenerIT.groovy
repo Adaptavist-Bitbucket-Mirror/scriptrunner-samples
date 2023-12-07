@@ -7,10 +7,10 @@ import com.atlassian.jira.project.AssigneeTypes
 import com.atlassian.jira.project.ProjectManager
 import com.atlassian.jira.project.type.ProjectTypeKeys
 import com.atlassian.jira.user.ApplicationUser
-import com.onresolve.scriptrunner.canned.common.admin.SrSpecification
 import spock.lang.Shared
+import spock.lang.Specification
 
-class CustomEventListenerIT extends SrSpecification {
+class CustomEventListenerIT extends Specification {
 
     @Shared
     ProjectService projectService = ComponentAccessor.getComponent(ProjectService)
@@ -23,14 +23,14 @@ class CustomEventListenerIT extends SrSpecification {
 
     def "project description updates upon project creation"() {
         setup:
-        def projectName = "FooBar Project"
+        def projectName = "FooBar Project 2"
         def initialDescription = "initial description"
         def expectedDescription = "foo bar description"
 
         and:
         def projectCreationData = new ProjectCreationData.Builder().with {
             withName(projectName)
-            withKey("FOOBAR")
+            withKey("FOO2")
             withDescription(initialDescription)
             withLead(currentUser)
             withUrl(null)
